@@ -1,0 +1,12 @@
+{
+  "name": "Journalit Trading Journal",
+  "short_name": "Journalit",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#111311",
+  "theme_color": "#111311",
+  "description": "Offline-first trading journal and account planner",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

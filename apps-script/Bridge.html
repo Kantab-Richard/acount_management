@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><base target="_top"><meta charset="utf-8"></head>
+<body><script>
+  const allowedOrigins = <?!= JSON.stringify(allowedOrigins) ?>;
+  const replies = new Map();
+  function reply(id, result, error) {
+    const origin = replies.get(String(id));
+    if (origin && allowedOrigins.includes(origin)) window.parent.postMessage({journalitBridgeResponse:true,id,result,error}, origin);
+    replies.delete(String(id));
+  }
+  window.addEventListener('message', event => {
+    if (event.source !== window.parent || !allowedOrigins.includes(event.origin)) return;
+    const request = event.data;
+    if (!request || request.journalitBridge !== true || !request.id) return;
+    replies.set(String(request.id), event.origin);
+    const runner = google.script.run
+      .withSuccessHandler(result => reply(request.id, result, null))
+      .withFailureHandler(error => reply(request.id, null, error && error.message ? error.message : 'Google sync failed.'));
+    if (request.action === 'get') runner.getWorkspace();
+    else if (request.action === 'save') runner.saveWorkspace(request.payload);
+    else reply(request.id, null, 'Unsupported sync action.');
+  });
+</script></body></html>

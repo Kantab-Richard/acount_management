@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111311" />
+    <meta name="description" content="Journalit web trading journal" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <title>Journalit — Trading Journal</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#home" aria-label="Journalit home"><span class="brand-mark">◌</span><span>journalit</span></a>
+        <label class="search-wrap"><span>⌕</span><input id="global-search" placeholder="Search trades & reviews…" /></label>
+        <nav id="main-nav" aria-label="Main navigation">
+          <p class="nav-label">Overview</p>
+          <button class="nav-item active" data-page="home"><span>◌</span>Home</button>
+          <button class="nav-item" data-page="trades"><span>⚑</span>Trade Log</button>
+          <button class="nav-item" data-page="dashboard"><span>▦</span>Dashboard</button>
+          <button class="nav-item" data-page="accounts"><span>♙</span>Accounts</button>
+          <button class="nav-item" data-page="setups"><span>⌘</span>Setups</button>
+          <p class="nav-label">Reviews</p>
+          <button class="nav-item" data-page="reviews"><span>▣</span>Reviews</button>
+          <button class="nav-item" data-page="calendar"><span>▦</span>Calendar</button>
+          <p class="nav-label">Tools</p>
+          <button class="nav-item" data-page="session"><span>ϟ</span>Session Mode</button>
+          <button class="nav-item" data-page="import"><span>⇧</span>Import trades</button>
+        </nav>
+        <div class="sidebar-bottom"><div class="local-status"><span class="status-dot"></span><span><b>Local workspace</b><small>Your data stays in this browser</small></span></div><button class="nav-item" data-action="settings"><span>⚙</span>Settings & data</button></div>
+      </aside>
+      <main class="main-area">
+        <header class="topbar"><button class="mobile-menu" id="mobile-menu" aria-label="Open menu">☰</button><div class="breadcrumbs"><span>Journalit</span><i>/</i><b id="top-title">Home</b></div><div class="top-actions"><span class="today-label" id="today-label"></span><span class="today-label" id="connection-status">Online · saved on this device</span><button class="button button-quiet" data-action="auth" id="auth-button">Connect Google</button><button class="button button-quiet" data-action="export">⇩ <span>Export</span></button><button class="button button-primary" data-action="add-trade">＋ <span>Add trade</span></button><button class="avatar" title="Local workspace">T</button></div></header>
+        <div id="page-root" class="page-root"></div>
+        <footer class="app-footer">Journalit web workspace <span>·</span> Offline ready <span>·</span> Saved on this device</footer>
+      </main>
+    </div>
+    <div id="modal-root"></div>
+    <input id="csv-file" type="file" accept=".csv,text/csv" hidden />
+    <script src="./apps-script-config.js"></script>
+    <script src="./apps-script-client.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
